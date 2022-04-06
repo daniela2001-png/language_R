@@ -1,48 +1,82 @@
-#Primer punto
-#LLAMAMOS EN LA LIBRERIA LA HERRAMIENTA PARA LEER NUESTRO DOCUMENTO
+# Integrantes Del Grupo Actividad #5
+# -----------------------------------
+# * Yeinmy Daniela Morales Barrera - ymoral35@ibero.edu.co - 100116235
+# * Deivid Steven Rojas Peña - drojasp4@ibero.edu.co - 100119296
+# * Luis Carlos Castiblanco Fonseca - lcasti58@ibero.edu.co - 100113602
 
+# Importamos las librerías necesarias para poder ejecutar nuestro código
 library(readxl)
-
-#INTRODUCIMOS LA BASE DE DATOS A TRABAJAR en una variable
-
-DATOS_ESTUDIANTES <- read_excel("DATOS_ESTUDIANTES.xlsx")
-
-#CREAMOS LA VARIABLE "calificacion" Y EXTRAEMOS LOS VALORES DE LA BASE DE DATOS PRINCIPAL
-
-calificacion <- DATOS_ESTUDIANTES$CALIFICACION
-calificacion
-
-#CREAMOS LA VARIABLE "frecuencia_absoluta" PARA CREAR Y GUARDAR LA TABLA DE FRECUENCIA ABSOLUTA
-
-frecuencia_absoluta <- table(calificacion)
-frecuencia_absoluta
-
-#DESPUES DE CREADA LA TABLA DE FRECUENCIA ABSOLUTA, CREAMOS LA TABLA DE FRECUENCIA RELATIVA Y LA GUARDAMOS EN LA VARIABLE "frecuencia_relativa"
-
-frecuencia_relativa <- prop.table(x= frecuencia_absoluta)
-frecuencia_relativa
-
-#segundo punto
-#instalamos y llamamos a la libreria ggplot2
-
 library(ggplot2)
 
-#creamos el diagrama de barras de la variable "ciudades"
-ciudades <- DATOS_ESTUDIANTES$CIUDAD
 
+# ------- PRIMER PUNTO ---------
+# Leemos nuestro archivo para poder manejar los datos desde una variable
+# en este caso esta variable será llamada "datos_estudiantes"
+datos_estudiantes <- read_excel("DATOS_ESTUDIANTES.xlsx")
+
+# Creamos la variable calificacion para poder almacenar en la misma,
+# todos los valores que tiene el campo o columna "calificacion" de nuestra tabla
+Calificacion <- datos_estudiantes$CALIFICACION
+
+# Asignamos a la variable "absolutas" la cantidad o "moda" por cada valor,
+# de la columna "calificacion", en conclusión creamos nuestra tabla de frecuencia absoluta
+absolutas <- table(Calificacion)
+
+# Imprimimos por STDOUT el valor almacenado en la variable "absolutas"
+absolutas
+
+# Después de creada la tabla de frecuencia absoluta
+# creamos la tabla de frecuencia relativa y la guardamos en la variable "relativas"
+# para poder conocer la frecuencia absoluta respecto a el total (fr)
+relativas <- prop.table(x=absolutas)
+
+# Imprimimos por STDOUT el valor almacenado en la variable "relativas"
+relativas
+
+# ------ SEGUNDO PUNTO ------
+
+# Asignamos a la variable "ciudades" los registros que contienen la columna "ciudades"
+# desde nuestro excel local que ya leímos y almacenamos en "datos_estudiantes"
+ciudades <- datos_estudiantes$CIUDAD
+
+# Creamos nuestro diagrama de barras con ayuda del método barplot para la variable "ciudades"
+# Se le pasan los siguientes párametros por valor:
+# 1) Los datos que vamos a renderizar.
+# 2) Modificamos la orientacion de las etiquetas respecto al eje, para que se perpendicular al mismo
+#    esto para que los nombres de cada ciudad se logren renderizar de una manera fácil de 
+#    interpretar.
+# 3) Pasamos el rango a tomar del vector de colores disponibles para cada barra dentro del gráfico
+# 4) Pasamos el título del gráfico
 barplot(table(ciudades), las = 2, col = 2:14, main = "Ciudades")
 
-#creamos el diagrama de sectores de la variable "ciudades"
-
+# Creamos nuestro diagrama de sectores con ayuda del método "pie" de la variable "ciudades"
+# Se le pasan los siguientes párametros por valor:
+# 1) Los datos que vamos a renderizar
+# 2) El rango a tomar para el vector de colores disponible para cada sector
+# 3) Título del gráfico
 pie(table(ciudades), col = 1:14, main = "Ciudades")
 
-#tercer punto
-#Creamos un histograma de la variable "edad"
 
-edad <- DATOS_ESTUDIANTES$EDAD
-hist(edad, xlab = "edad", ylab = "Frecuencia", col = "yellow", main = "Histograma de edad", xlim = range(10,40))
+# ----- TERCER PUNTO ----- 
 
-#Creamos un diagrama de caja y bigotes de la variable "edad"
+# Asignamos a la variable "edad" los registros contenidos en la columna "edad"
+# que tenemos dentro de nuestro excel local
+edad <- datos_estudiantes$EDAD
+
+# Creamos el histograma para renderizar los valores de la variable "edad"
+# Se le pasan los siguientes párametros por valor:
+# 1) Los datos a renderizar
+# 2) Una descripción para el eje x
+# 3) Una descripción para el eje y
+# 4) El color usado para cada "bin" dentro del histograma
+# 5) El título del histrograma
+# 6) El rango de valores a tomar para el eje x
+hist(edad, xlab = "Edad", ylab = "Frecuencia Absoluta", col = "yellow", main = "Histograma de Edad", xlim = range(10,40))
+
+# Creamos un diagrama de caja y bigotes de la variable "edad"
+# Se le pasan los siguientes párametros por valor:
+# 1) Los datos a renderizar
+# 2) 
 
 boxplot(edad, horizontal = TRUE, main = "EDAD 1.5", range = 1.5)
 #Usamos un stripchart para visualizar mejor los valores y dandonos cuenta de que existen varios valores atipicos
