@@ -69,40 +69,97 @@ edad <- datos_estudiantes$EDAD
 # 2) Una descripción para el eje x
 # 3) Una descripción para el eje y
 # 4) El color usado para cada "bin" dentro del histograma
-# 5) El título del histrograma
+# 5) El título del histograma
 # 6) El rango de valores a tomar para el eje x
 hist(edad, xlab = "Edad", ylab = "Frecuencia Absoluta", col = "yellow", main = "Histograma de Edad", xlim = range(10,40))
+
+
+# Seteamos la opción de poder abrir la visualización de dos gráficos en una misma ventana
+par(mfrow = c(2,1))
 
 # Creamos un diagrama de caja y bigotes de la variable "edad"
 # Se le pasan los siguientes párametros por valor:
 # 1) Los datos a renderizar
-# 2) 
-
-boxplot(edad, horizontal = TRUE, main = "EDAD 1.5", range = 1.5)
-#Usamos un stripchart para visualizar mejor los valores y dandonos cuenta de que existen varios valores atipicos
+# 2) Modificamos la orientacion del boxplot de vertical a horizontal
+# 3) Definimos el título de la gráfica
+# 4) Determina la extensión de los “whiskers” de la caja
+# --------
+# ¿Existe algún valor atípico en esta variable?
+# Respondiendo a esta pregunta tenemos que:
+# usando un stripchart para poder visualizar mejor los puntos de cada registro,
+# y observando ambos extremos del boxplot, nos damos cuenta de que ninguno de estos puntos
+# se sale de ambos extremos, que hablando puntualmente quiere decir que no hay una edad
+# que se salga del rango entre los 17 y 35 años, es decir en este caso especifico
+# NO contamos con valores atípicos cuando tenemos un rango de 1.5
+boxplot(edad, horizontal = TRUE, main = "Edades", sub = "Edades con una extensión de 'whiskers' igual a 1.5 ", range = 1.5)
 stripchart(edad, method = "jitter", pch = 19, add = TRUE, col = "blue")
 
 
-#Creamos otro diagrama para verificar el rango con un 0.5
-boxplot(edad, horizontal = TRUE, main = "EDAD 0.5", range = 0.5)
-#Usamos un stripchart para visualizar mejor los valores y dandonos cuenta de que existen varios valores atipicos al cambiar el range a 0.5
-
+# Ahora cambiando nuestro rango de 1.5 a 0.5 tenemos la siguiente pregunta:
+# ¿ Las conclusiones varían ? dando una respuesta a la misma se tiene que
+# con ayuda de nuestro boxplot en ese nuevo rango (0.5) efectivamente ya contamos
+# con valores atípicos, comparado con el anterior boxplot que tenía un rango mayor
+# estos valores fuera de los extremos pertenecen a las edades: [17, 34, 35] 
+# esto lo podemos verificar con ayuda del método "stats" de boxplot
+# en conclusión si modificamos el rango de 1.5 a 0.5 notamos que ya contaremos con 
+# valores atípicos dentro de nuestro diagrama de caja y bigotes.
+boxplot(edad, horizontal = TRUE, main = "Edades", sub="Edades con una extensión de 'whiskers' igual a 0.5", range = 0.5)
+# Usamos un stripchart para visualizar mejor los valores
 stripchart(edad, method = "jitter", pch = 19, add = TRUE, col = "red")
 
-#Al cambiar el rango las conclusiones varian bastante
+# Seteamos la opción de poder cerrar la visualización de dos gráficos en una misma ventana
+par(mfrow = c(1,1))
 
-#cuarto punto
-#resumen de la variable "calificacion"con la funcion summary
- 
-summary(calificacion)
 
-#resumen de la variable "calificacion" de forma individual
 
-length(calificacion)
-class(calificacion)
-mode(calificacion)
+# ---- CUARTO PUNTO -----
 
-#quinto punto
+# En este cuarto punto nuestra misión será poder resumir brevemente
+# información sobre el campo "calificacion" con ayuda del método summary
+# que nos crea una "matriz", donde nos explica estadisticas básicas sobre 
+# el vector pasado como párametro, los datos estadisticos que nos brinda este método
+# son los siguientes, (ordenados por columnas) :
+# 1) Min > Nos expresa en este caso la calificación mínima dentro de la columna
+# 2) Primer Cuartil > Nos expresa el 25% de los datos
+# 3) Mediana > Variable con posición central de los datos
+# 4) Media > Razon entre la suma y total de datos
+# 5) Tercer Cuartil > Representa el 75% de los datos
+# 6) Max > Representa el valor máximo obtenido entre los registros del campo
+summary(as.numeric(calificacion))
+
+# Ahora verifiquemos si estas estadisticas dadas calculada de anera individual
+# coinciden o no ..
+
+# 1) Calculemos el valor mínimo del vector calificación
+min(as.numeric(calificacion))
+# Efectivamente el mínimo coincide con el valor retornado con ayuda del método summary
+
+# 2) Calculemos el primer cuartil del vector calificación
+primer_cuartil <- quantile(as.numeric(calificacion))
+primer_cuartil[2]
+# Validamos que el 25% de los datos tiene una calificación de 3.9
+
+# 3) Calculemos la mediana de los datos
+median(as.numeric(calificacion))
+# La mediana de las datos es igual a 4.0
+
+# 4) Caculemos la media de los datos
+mean(as.numeric(calificacion))
+# Validamos que la media de los datos es igual a 4.12 
+
+# 5) Calculemos ahora el 3er Cuartil (75%)
+tercer_cuartil <- quantile(as.numeric(calificacion))
+tercer_cuartil[4]
+# Validamos que el 75% de los datos tiene una calificación de 4.5
+
+# 6) Calculemos el máximo valor que puede tomar el vector:
+max(as.numeric(calificacion))
+# El máximo coincide con el valor obtenido previamente con ayuda de summary
+
+
+
+# ---- QUINTO PUNTO ----
+
 #Creamos la variable "estatura" y la pasamos a int
 estatura <- as.numeric(DATOS_ESTUDIANTES$`ESTATURA(M)`)
 #Sacamos la media de la variable "estatura"
@@ -111,6 +168,7 @@ mean(estatura)
 var(estatura)
 #Sacamos la desviacion estandar
 sd(estatura)
+
 
 
 
