@@ -119,14 +119,48 @@ boxplot(EdadGR2, horizontal = TRUE, main = "Dispersion y datos atipicos edad GR2
 boxplot.stats(EdadGR2, do.out = TRUE)
 #Mediante esta funcion mas en especifico '$out' nos muestra que no existen valores atipicos en la variable 'EdadGR2'
 
-#Cuarto punto
-Estatura_GR1 <- GR1$Estatura
-Estatura_GR1 <- na.omit(Estatura_GR1)
-class(Estatura_GR1)
+
+#Deiv Punto 4 se installan los paquetes necesarios y se activan librerías necesarias
+install.packages("tidyverse")
+library("tidyverse")
+install.packages("dplyr")
+library("dplyr")
+#============= GR1 Valor máximo del 40% de las estaturas más pequeñas  ==============
+#se crea una variable que tendrá el dataframe de GR1 y se ordenan de menor a mayor borrando los NA ya que no hay data de esas estaturas
+dfGR1 <- data.frame(GR1)
+OrdenadoEstatura <- dfGR1 %>% arrange(Estatura)
+dfGR1 <- drop_na(OrdenadoEstatura)
+dfGR1
+# se cuentan los datos de la tabla GR1 
+ConteoEstaturaconGR1 <- count(dfGR1)
+ConteoEstaturaconGR1
+#se calcula el 40% es decir la cantidad de datos a tomar
+round(40*ConteoEstaturaconGR1/100, digits = 0)
+#Hay 18 datos contando por lo cual seleccionamos los 7datos que equialen al 40%
+CuarentaPorcientoGR1 <- dfGR1[1:7,]
+CuarentaPorcientoGR1
+#Sacamos el valor máximo del 40% de las estaturas mínimas la cuál es 1.78
+max(CuarentaPorcientoGR1$Estatura)
+
+#============= GR2 Valor mínimo del 30% de las estaturas mayores  ==============
+#se crea una variable que tendrá el dataframe de GR2 y se ordenan de mayor a menor borrando los NA ya que no hay data de esas estaturas
+dfGR2 <- data.frame(GR2)
+OrdenadoEstatura2 <- dfGR2 %>% arrange(desc(Estatura))
+dfGR2 <- drop_na(OrdenadoEstatura2)
+dfGR2
+# se cuentan los datos de la tabla GR2
+ConteoEstaturaconGR2 <- count(dfGR2)
+ConteoEstaturaconGR2
+#se calcula el 30% es decir la cantidad de datos a tomar
+round(30*ConteoEstaturaconGR2/100, digits = 0)
+#Hay 18 datos contando por lo cual seleccionamos los 5 datos que equialen al 30%
+CuarentaPorcientoGR2 <- dfGR2[1:5,]
+CuarentaPorcientoGR2
+#Sacamos el valor mínimo del 30% de las estaturas mayores la cuál es 1.83
+min(CuarentaPorcientoGR2$Estatura)
 
 
-#sort.list(c(Estatura_GR1))
-sort.list(c(1, 2, 3, 4, 5, 6, 7, 8, 9))
+
 
 #quinto punto 
 variable <- 1:20
