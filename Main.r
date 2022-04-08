@@ -80,6 +80,84 @@ sd(estatura)
 
 
 
+#segundo ejercicio
+file.choose()
+ruta_excel <- "C:\\Users\\Gaming\\Downloads\\GRCienciasDatos (1).xlsx"
+GR1 <- read_excel(ruta_excel)
+library(colourpicker)
+
+
+colores <- scale_fill_manual(values = c("#00CFFF", "#FF00E7", "#3FF200", "#EDFC00"))
+pie(table(GR1$`Grupo Sanguíneo`), col =  c("#00CFFF", "#FF00E7", "#3FF200", "#EDFC00"), main = "Grupo sanguineo GR1")
+
+
+GR2 <- read_excel(ruta_excel, sheet = "GR2")
+pie(table(GR2$`Grup0 Sanguíne0`), col =  c("#00CFFF", "#FF00E7", "#3FF200", "#EDFC00"), main = "Grupo sanguineo GR2")
+
+
+#SEGUNDO PUNTO
+Estatura <- GR1$Estatura
+
+as.numeric(Estatura)
+na.omit(Estatura)
+hist(Estatura, xlab = "Estatura", ylab = "Frecuencia", col = "RED", main = "Histograma estatura GR1")
+
+Estatura2 <- GR2$Estatura
+as.numeric(Estatura2)
+na.omit(Estatura2)
+hist(Estatura2, xlab = "Estatura", ylab = "Frecuencia", col = "blue", main = "Histograma estatura GR2")
+
+#TERCER PUNTO
+EdadGR1 <- GR1$Edad
+EdadGR2 <- GR2$Edad
+boxplot(EdadGR1, horizontal = TRUE, main = "Dispersion y datos atipicos edad GR1")
+boxplot.stats(EdadGR1, do.out = TRUE)
+#Mediante esta funcion mas en especifico '$out' nos muestra que no existen valores atipicos en la variable 'EdadGR1'
+
+
+boxplot(EdadGR2, horizontal = TRUE, main = "Dispersion y datos atipicos edad GR2")
+boxplot.stats(EdadGR2, do.out = TRUE)
+#Mediante esta funcion mas en especifico '$out' nos muestra que no existen valores atipicos en la variable 'EdadGR2'
+
+#Cuarto punto
+Estatura_GR1 <- GR1$Estatura
+Estatura_GR1 <- na.omit(Estatura_GR1)
+class(Estatura_GR1)
+
+
+#sort.list(c(Estatura_GR1))
+sort.list(c(1, 2, 3, 4, 5, 6, 7, 8, 9))
+
+#quinto punto 
+variable <- 1:20
+plot(Estatura~variable, main="DISPERSION DE DATOS")
+table(Estatura)
+
+
+       
+
+#septimo punto
+
+
+library(quantmod)
+library(tseries)
+library(fImport)
+#Asimetria
+skewness(GR1$Edad)
+hist(GR1$Edad)
+mean(GR1$Edad)
+abline(v=23.65,col="RED")
+
+#curtosis
+#Teniendo en cuenta que la distribucion normal de curtosis es 3
+kurtosis(GR1$Edad, method = "moment")
+hist(GR1$Edad)
+mean(GR1$Edad)
+abline(v=23.65,col="RED")
+
+
+
+
 
 
 
