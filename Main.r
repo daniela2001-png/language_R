@@ -169,6 +169,19 @@ table(Estatura)
 
 
        
+#Sexto punto
+Estaturagr1 <- na.omit(GR1$Estatura)
+Estaturagr2 <- na.omit(GR2$Estatura)
+#Sacamos la media
+mean(Estaturagr1)
+mean(Estaturagr2)
+#Con esto nos podemos dar cuenta que la estatura media mayor pertenece al grupo GR2
+
+#Sacamos la mediana de GR1 y GR2
+median(Estaturagr1)
+median(Estaturagr2)
+#Con esto nos podemos dar cuenta que la mediana en ambos grupos es la misma asi que no hay una mas pequeña que la otra
+
 
 #septimo punto
 
