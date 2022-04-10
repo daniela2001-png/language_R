@@ -170,7 +170,7 @@ mean(estatura)
 # 1) La varianza es el número que indica la dispersión de la serie de datos del vector
 # estatura respecto a la media de este subconjunto de datos
 var(estatura)
-# 2) La desviación estandar o típica es la razi cuadrada de la varianza
+# 2) La desviación estandar o típica es la raíz cuadrada de la varianza
 # es decir nuestra salida ya no estará en terminos de estatura al cuadraddo sino 
 # solo en terminos de estatura, tiene la misma finalidad que la varianza
 sd(estatura)
