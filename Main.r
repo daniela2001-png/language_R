@@ -162,11 +162,16 @@ min(CuarentaPorcientoGR2$Estatura)
 
 
 
-#quinto punto 
-variable <- 1:20
-plot(Estatura~variable, main="DISPERSION DE DATOS")
-table(Estatura)
-
+#Punto 5 ejercicio 2 
+#para verificar la Homocedasticidad de ambos dataframes y confirmar cuál es más homogéneo
+#Comenzamos por instalar el paquete y a librería
+install.packages("car")
+library("car")
+#Hacemos el Test de Levene para GR1
+leveneTest(y = GR1$Edad, group = GR1$Estatura, center = "median")
+#Hacemos el Test de Levene para GR2
+leveneTest(y = GR2$Edad, group = GR2$Estatura, center = "median")
+#Se evidencia en el PE(>F) que el grupo más homogéneo es GR1
 
        
 #Sexto punto
