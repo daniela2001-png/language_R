@@ -160,14 +160,36 @@ max(as.numeric(calificacion))
 
 # ---- QUINTO PUNTO ----
 
-#Creamos la variable "estatura" y la pasamos a int
+# Ahora en el quinto  y penúltimo hallaremos la estatura media de los
+# estudiantes, antes de obtener la media casteamos de caracter a numeric,
+# despues del paso anterior usaremos el método mean() para poder obtener este dato
 estatura <- as.numeric(DATOS_ESTUDIANTES$`ESTATURA(M)`)
-#Sacamos la media de la variable "estatura"
 mean(estatura)
-#sacamos la varianza de la variable "estatura"
+
+# Ahora como penúltimo punto obtendremos dos medidas de dispersión
+# 1) La varianza es el número que indica la dispersión de la serie de datos del vector
+# estatura respecto a la media de este subconjunto de datos
 var(estatura)
-#Sacamos la desviacion estandar
+# 2) La desviación estandar o típica es la razi cuadrada de la varianza
+# es decir nuestra salida ya no estará en terminos de estatura al cuadraddo sino 
+# solo en terminos de estatura, tiene la misma finalidad que la varianza
 sd(estatura)
+
+
+# ---- SEXTO PUNTO ----
+# Como conclusiones de este gran taller como equipo logramos notar
+# la diferencia que puede tomar el rango de una caja de bigotes que nos permite
+# ver el cambio de la existencia o NO de valores atípicos dentro de un subconjunto
+# de datos dado, además que la frecuencia absoluta nos permite contar el número de veces
+# que se repite un mismo valor, también aprendimos que el primer cuartil,
+# es el equivalente al 25% de los datos y que el 3er cuartil
+# representa el 75% de los datos, en adición ya conocemos algunas medidas de
+# dispersión dentro de el mundo de la estadistica como lo son:
+# la varianza, la desviación estandar o típica, y el rango
+# donde cada medida se diferencia aunque la varianza y la desviación estandar
+# cuentan con la misma finalidad solo que una es la raíz cuadrada de la otra
+# cada una de estas formulas nos permite obtener informacion relevante entre
+# una variable y otra para poder dar respuesta a una ó distintas hipótesis.
 
 
 
