@@ -20,7 +20,7 @@ client = tweepy.Client(consumer_key = "WGYa7ZiOblDsE6v3jYdtwjAYg",
                        wait_on_rate_limit=True)
 
 #Aquí irá el usuario que buscaremos solo cambiamos lo que está dentro de las comillas dobles
-UsuarioABuscar = str("DjMaRiiO")
+UsuarioABuscar = str("petrogustavo")
 
 #get max. 10 tweets
 tweets = client.search_recent_tweets(query=f"from:{UsuarioABuscar} -is:retweet", 
@@ -33,6 +33,11 @@ tweets_dict = tweets.json()
 tweets_data = tweets_dict['data']
 
 # Transform to pandas Dataframe
-df = pd.json_normalize(tweets_data) 
+df = pd.json_normalize(tweets_data)
+
+#Mostramos los 20 últimos Tweets
+print(f'{"="*60}')
+print(f'Del usuario: {UsuarioABuscar}, hemos encontrado los siguientes primeros 20 Tweets: ')
+print(f'{"="*60}')
 df['text']
 
