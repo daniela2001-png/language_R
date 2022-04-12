@@ -1,0 +1,32 @@
+#importamos las librerías
+import tweepy
+import pandas as pd
+import requests
+import json
+
+#definimos una variables que contendrá las credenciales de la api
+client = tweepy.Client(consumer_key = "WGYa7ZiOblDsE6v3jYdtwjAYg",
+                       consumer_secret = "N5oU1p9beN2VDckBC2dtv0JB3XYVxigiebsOwwkOraivDi13L3",
+                       access_token = "775441596598870020-inxj9ON3b37F5l47VF0AjlUSewBxy5s",
+                       access_token_secret = "4p4I8a5XGXbSFRZduFyYo7dg6Cp82kbc9FfaCfYHpNlll",
+                       bearer_token = "AAAAAAAAAAAAAAAAAAAAADJwbQEAAAAAyeUcueaGdGnE5EpG8rOyBkrBr78%3DHGF1mY0uDJvqc6o8aRKxzQoYo6obdr1r1WeGqUH6SWLChJpdpC",
+                       return_type = requests.Response,
+                       wait_on_rate_limit=True)
+
+#Aquí irá el usuario que buscaremos solo cambiamos lo que está dentro de las comillas dobles
+UsuarioABuscar = str("elonmusk")
+
+#get max. 10 tweets
+tweets = client.search_recent_tweets(query=f"from:{UsuarioABuscar} -is:retweet", 
+                                    tweet_fields=['author_id', 'created_at'],
+                                     max_results=20)
+# Save data as dictionary
+tweets_dict = tweets.json() 
+
+# Extract "data" value from dictionary
+tweets_data = tweets_dict['data']
+
+# Transform to pandas Dataframe
+df = pd.json_normalize(tweets_data) 
+df['text']
+
