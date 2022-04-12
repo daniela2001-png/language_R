@@ -99,25 +99,55 @@ while intentos > 0:
         print("Haz alcanzado el limite de veces, perdiste")
         print("El numero era el ", numero)'''
 
+
 #Quinto punto
-
-
 
 
 '''
 
-consumer_key= 'keeItkOLE5gHM0BV83hMqoFCX'
-consumer_secret= 'MFJpcC9BoYaihTuBrr3aA9LHvP5nfQWyepfTuwx2SX90qEh0au'
+#importamos las librerías
+import tweepy
+import pandas as pd
+import requests
+import json
 
-access_token='1487157300414582796-dTfBrVg0OXdorVXgQLh9mlAbW6FaMF'
-access_token_secret='jZf7MOv4grEYDGVb2qiA6pYyr34BZubbgK9uICnWGo7Kw'
+#Inicializamos variables
+tweets = None
+tweets_dict = None
+tweets_data = None
+df = None
 
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-auth.set_access_token(access_token, access_token_secret)
+#definimos una variables que contendrá las credenciales de la api
+client = tweepy.Client(consumer_key = "WGYa7ZiOblDsE6v3jYdtwjAYg",
+                       consumer_secret = "N5oU1p9beN2VDckBC2dtv0JB3XYVxigiebsOwwkOraivDi13L3",
+                       access_token = "775441596598870020-inxj9ON3b37F5l47VF0AjlUSewBxy5s",
+                       access_token_secret = "4p4I8a5XGXbSFRZduFyYo7dg6Cp82kbc9FfaCfYHpNlll",
+                       bearer_token = "AAAAAAAAAAAAAAAAAAAAADJwbQEAAAAAyeUcueaGdGnE5EpG8rOyBkrBr78%3DHGF1mY0uDJvqc6o8aRKxzQoYo6obdr1r1WeGqUH6SWLChJpdpC",
+                       return_type = requests.Response,
+                       wait_on_rate_limit=True)
 
-api = tweepy.API(auth)
-data= api.me()
-print(data)
+#Aquí irá el usuario que buscaremos solo cambiamos lo que está dentro de las comillas dobles
+UsuarioABuscar = str("petrogustavo")
+
+#get max. 10 tweets
+tweets = client.search_recent_tweets(query=f"from:{UsuarioABuscar} -is:retweet", 
+                                    tweet_fields=['author_id', 'created_at'],
+                                     max_results=20)
+# Save data as dictionary
+tweets_dict = tweets.json() 
+
+# Extract "data" value from dictionary
+tweets_data = tweets_dict['data']
+
+# Transform to pandas Dataframe
+df = pd.json_normalize(tweets_data)
+
+#Mostramos los 20 últimos Tweets
+print(f'{"="*60}')
+print(f'Del usuario: {UsuarioABuscar}, hemos encontrado los siguientes primeros 20 Tweets: ')
+print(f'{"="*60}')
+df['text']
+
 '''
 
 
