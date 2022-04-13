@@ -11,12 +11,13 @@ library(ggplot2)
 
 # ------- PRIMER PUNTO ---------
 # Leemos nuestro archivo para poder manejar los datos desde una variable
-# en este caso esta variable será llamada "datos_estudiantes"
-datos_estudiantes <- read_excel("DATOS_ESTUDIANTES.xlsx")
+# en este caso esta variable será llamada "DATOS_ESTUDIANTES"
+# NOTA:  modificar ruta  con file.choose() para copiar y pegar la ruta del excel
+DATOS_ESTUDIANTES <- read_excel("/Users/dmoralesbarr/Dropbox/Mac/Desktop/LENGUAJE_R/language_R/DATOS_ESTUDIANTES.xlsx")
 
 # Creamos la variable calificacion para poder almacenar en la misma,
 # todos los valores que tiene el campo o columna "calificacion" de nuestra tabla
-Calificacion <- datos_estudiantes$CALIFICACION
+Calificacion <- DATOS_ESTUDIANTES$CALIFICACION
 
 # Asignamos a la variable "absolutas" la cantidad o "moda" por cada valor,
 # de la columna "calificacion", en conclusión creamos nuestra tabla de frecuencia absoluta
@@ -36,8 +37,8 @@ relativas
 # ------ SEGUNDO PUNTO ------
 
 # Asignamos a la variable "ciudades" los registros que contienen la columna "ciudades"
-# desde nuestro excel local que ya leímos y almacenamos en "datos_estudiantes"
-ciudades <- datos_estudiantes$CIUDAD
+# desde nuestro excel local que ya leímos y almacenamos en "DATOS_ESTUDIANTES"
+ciudades <- DATOS_ESTUDIANTES$CIUDAD
 
 # Creamos nuestro diagrama de barras con ayuda del método barplot para la variable "ciudades"
 # Se le pasan los siguientes párametros por valor:
@@ -61,7 +62,7 @@ pie(table(ciudades), col = 1:14, main = "Ciudades")
 
 # Asignamos a la variable "edad" los registros contenidos en la columna "edad"
 # que tenemos dentro de nuestro excel local
-edad <- datos_estudiantes$EDAD
+edad <- DATOS_ESTUDIANTES$EDAD
 
 # Creamos el histograma para renderizar los valores de la variable "edad"
 # Se le pasan los siguientes párametros por valor:
@@ -125,35 +126,35 @@ par(mfrow = c(1,1))
 # 4) Media > Razon entre la suma y total de datos
 # 5) Tercer Cuartil > Representa el 75% de los datos
 # 6) Max > Representa el valor máximo obtenido entre los registros del campo
-summary(as.numeric(calificacion))
+summary(as.numeric(Calificacion))
 
 # Ahora verifiquemos si estas estadisticas dadas calculada de anera individual
 # coinciden o no ..
 
 # 1) Calculemos el valor mínimo del vector calificación
-min(as.numeric(calificacion))
+min(as.numeric(Calificacion))
 # Efectivamente el mínimo coincide con el valor retornado con ayuda del método summary
 
 # 2) Calculemos el primer cuartil del vector calificación
-primer_cuartil <- quantile(as.numeric(calificacion))
+primer_cuartil <- quantile(as.numeric(Calificacion))
 primer_cuartil[2]
 # Validamos que el 25% de los datos tiene una calificación de 3.9
 
 # 3) Calculemos la mediana de los datos
-median(as.numeric(calificacion))
+median(as.numeric(Calificacion))
 # La mediana de las datos es igual a 4.0
 
 # 4) Caculemos la media de los datos
-mean(as.numeric(calificacion))
+mean(as.numeric(Calificacion))
 # Validamos que la media de los datos es igual a 4.12 
 
 # 5) Calculemos ahora el 3er Cuartil (75%)
-tercer_cuartil <- quantile(as.numeric(calificacion))
+tercer_cuartil <- quantile(as.numeric(Calificacion))
 tercer_cuartil[4]
 # Validamos que el 75% de los datos tiene una calificación de 4.5
 
 # 6) Calculemos el máximo valor que puede tomar el vector:
-max(as.numeric(calificacion))
+max(as.numeric(Calificacion))
 # El máximo coincide con el valor obtenido previamente con ayuda de summary
 
 
