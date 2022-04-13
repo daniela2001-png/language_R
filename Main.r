@@ -198,6 +198,8 @@ sd(estatura)
 
 
 
+
+
         
       
 
